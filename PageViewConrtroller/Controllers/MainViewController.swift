@@ -11,16 +11,39 @@ final class MainViewController: UIViewController {
     
     private var pages: [UIViewController] = []
     
+    //MARK: - UI Elements
+    
     private lazy var pageController: UIPageViewController = {
-        
         let controller = UIPageViewController(
             transitionStyle: .scroll,
             navigationOrientation: .horizontal
         )
         controller.view.backgroundColor = .clear
         controller.dataSource = self
-
+        controller.delegate = self
         return controller
+    }()
+    
+    private var pageControl: UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.numberOfPages = 3
+        pageControl.backgroundColor = .clear
+        pageControl.currentPageIndicatorTintColor = .black
+        pageControl.pageIndicatorTintColor = .lightGray
+        pageControl.currentPage = 0
+        return pageControl
+    }()
+    
+    private lazy var previousButton: MyButton = {
+        let button = MyButton(title: "PREVIOUS")
+        button.addTarget(self, action: #selector(previousButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var nextButton: MyButton = {
+        let button = MyButton(title: "NEXT")
+        button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+        return button
     }()
     
     private lazy var blackAndWhiteButton: MyButton = {
@@ -42,7 +65,17 @@ final class MainViewController: UIViewController {
         
     }
     
+    //MARK: - Button event handlers
+    
     @objc private func blackAndWhiteButtonTapped() {
+        
+    }
+    
+    @objc private func previousButtonTapped() {
+        
+    }
+    
+    @objc private func nextButtonTapped() {
         
     }
     
@@ -65,23 +98,45 @@ final class MainViewController: UIViewController {
     
     private func configureViewHierarchy() {
         view.addSubview(pageController.view)
+        view.addSubview(pageControl)
         view.addSubview(blackAndWhiteButton)
+        view.addSubview(previousButton)
+        view.addSubview(nextButton)
     }
     
     private func configureViewLayout() {
         pageController.view.translatesAutoresizingMaskIntoConstraints = false
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
         blackAndWhiteButton.translatesAutoresizingMaskIntoConstraints = false
+        previousButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            
             pageController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 170),
             pageController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             pageController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             pageController.view.heightAnchor.constraint(equalToConstant: 400),
             
+            pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            pageControl.topAnchor.constraint(equalTo: pageController.view.bottomAnchor),
+            pageControl.heightAnchor.constraint(equalToConstant: 50),
+            pageControl.widthAnchor.constraint(equalToConstant: 200),
+            
             blackAndWhiteButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -75),
             blackAndWhiteButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             blackAndWhiteButton.widthAnchor.constraint(equalToConstant: 270),
-            blackAndWhiteButton.heightAnchor.constraint(equalToConstant: 50)
+            blackAndWhiteButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            previousButton.bottomAnchor.constraint(equalTo: blackAndWhiteButton.topAnchor, constant: -36),
+            previousButton.leadingAnchor.constraint(equalTo: blackAndWhiteButton.leadingAnchor),
+            previousButton.widthAnchor.constraint(equalToConstant: 120),
+            previousButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            nextButton.bottomAnchor.constraint(equalTo: blackAndWhiteButton.topAnchor, constant: -36),
+            nextButton.trailingAnchor.constraint(equalTo: blackAndWhiteButton.trailingAnchor),
+            nextButton.widthAnchor.constraint(equalToConstant: 120),
+            nextButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 }
@@ -113,5 +168,12 @@ extension MainViewController: UIPageViewControllerDataSource, UIPageViewControll
         }
         
         return nil
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if let currentViewController = pageViewController.viewControllers?.first,
+           let currentIndex = pages.firstIndex(of: currentViewController) {
+            pageControl.currentPage = currentIndex
+        }
     }
 }

@@ -10,6 +10,7 @@ final class ImageVC: UIViewController {
     init(imageName: String ) {
         super.init(nibName: nil, bundle: nil)
         self.imageView.image = UIImage(named: imageName)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -19,7 +20,8 @@ final class ImageVC: UIViewController {
     override func viewDidLoad() {
         view.addSubview(imageView)
         configureLayout()
-        view.backgroundColor = .blue
+        applyShadow()
+        view.backgroundColor = .systemBackground
     }
     
     private func configureLayout() {
@@ -27,7 +29,16 @@ final class ImageVC: UIViewController {
         
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 350),
+            imageView.widthAnchor.constraint(equalToConstant: 350)
         ])
+    }
+    
+    private func applyShadow() {
+        imageView.layer.shadowColor = UIColor.black.cgColor
+        imageView.layer.shadowOpacity = 0.5
+        imageView.layer.shadowOffset = CGSize(width: 0, height: 10)
+        imageView.layer.shadowRadius = 5
     }
 }

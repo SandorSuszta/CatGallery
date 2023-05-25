@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class MainViewController: UIViewController {
     
     private var pages: [UIViewController] = []
     
@@ -17,12 +17,16 @@ class ViewController: UIViewController {
             transitionStyle: .scroll,
             navigationOrientation: .horizontal
         )
-        
-        controller.view.backgroundColor = .green
-        controller.delegate = self
+        controller.view.backgroundColor = .clear
         controller.dataSource = self
 
         return controller
+    }()
+    
+    private lazy var blackAndWhiteButton: MyButton = {
+        let button = MyButton(title: "BLACK & WHITE")
+        button.addTarget(self, action: #selector(blackAndWhiteButtonTapped), for: .touchUpInside)
+        return button
     }()
     
     //MARK: - Lifecycle
@@ -30,11 +34,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .red
+        view.backgroundColor = .systemBackground
         configureViewHierarchy()
         configureViewLayout()
         pages = makePages()
         pageController.setViewControllers([pages[0]], direction: .forward, animated: true)
+        
+    }
+    
+    @objc private func blackAndWhiteButtonTapped() {
         
     }
     
@@ -57,23 +65,30 @@ class ViewController: UIViewController {
     
     private func configureViewHierarchy() {
         view.addSubview(pageController.view)
+        view.addSubview(blackAndWhiteButton)
     }
     
     private func configureViewLayout() {
         pageController.view.translatesAutoresizingMaskIntoConstraints = false
+        blackAndWhiteButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            pageController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            pageController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 170),
             pageController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             pageController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             pageController.view.heightAnchor.constraint(equalToConstant: 400),
+            
+            blackAndWhiteButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -75),
+            blackAndWhiteButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            blackAndWhiteButton.widthAnchor.constraint(equalToConstant: 270),
+            blackAndWhiteButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
 }
 
     //MARK: - PageViewController Delegate and DataSource methods
 
-extension ViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+extension MainViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let currentIndex = pages.firstIndex(of: viewController) else { return nil }
@@ -100,5 +115,3 @@ extension ViewController: UIPageViewControllerDataSource, UIPageViewControllerDe
         return nil
     }
 }
-
-

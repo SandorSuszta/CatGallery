@@ -9,23 +9,25 @@
 /* Begin PBXBuildFile section */
 		79AFBACD2A1F744400BD8278 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFBACC2A1F744400BD8278 /* AppDelegate.swift */; };
 		79AFBACF2A1F744400BD8278 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFBACE2A1F744400BD8278 /* SceneDelegate.swift */; };
-		79AFBAD12A1F744400BD8278 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFBAD02A1F744400BD8278 /* ViewController.swift */; };
+		79AFBAD12A1F744400BD8278 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFBAD02A1F744400BD8278 /* MainViewController.swift */; };
 		79AFBAD62A1F744700BD8278 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79AFBAD52A1F744700BD8278 /* Assets.xcassets */; };
 		79AFBAD92A1F744700BD8278 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79AFBAD72A1F744700BD8278 /* LaunchScreen.storyboard */; };
 		79AFBAE32A1F856D00BD8278 /* ImageNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFBAE22A1F856D00BD8278 /* ImageNames.swift */; };
 		79AFBAE52A1FCD4700BD8278 /* ImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFBAE42A1FCD4700BD8278 /* ImageVC.swift */; };
+		79AFBAE72A1FE90700BD8278 /* MyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFBAE62A1FE90700BD8278 /* MyButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		79AFBAC92A1F744400BD8278 /* PageViewConrtroller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PageViewConrtroller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79AFBACC2A1F744400BD8278 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79AFBACE2A1F744400BD8278 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		79AFBAD02A1F744400BD8278 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		79AFBAD02A1F744400BD8278 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		79AFBAD52A1F744700BD8278 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79AFBAD82A1F744700BD8278 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79AFBADA2A1F744700BD8278 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79AFBAE22A1F856D00BD8278 /* ImageNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNames.swift; sourceTree = "<group>"; };
 		79AFBAE42A1FCD4700BD8278 /* ImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageVC.swift; sourceTree = "<group>"; };
+		79AFBAE62A1FE90700BD8278 /* MyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +60,57 @@
 		79AFBACB2A1F744400BD8278 /* PageViewConrtroller */ = {
 			isa = PBXGroup;
 			children = (
-				79AFBACC2A1F744400BD8278 /* AppDelegate.swift */,
-				79AFBACE2A1F744400BD8278 /* SceneDelegate.swift */,
-				79AFBAD02A1F744400BD8278 /* ViewController.swift */,
-				79AFBAE22A1F856D00BD8278 /* ImageNames.swift */,
-				79AFBAD52A1F744700BD8278 /* Assets.xcassets */,
-				79AFBAD72A1F744700BD8278 /* LaunchScreen.storyboard */,
+				79AFBAE82A1FE91900BD8278 /* Application */,
+				79AFBAEC2A1FE9B400BD8278 /* Views */,
+				79AFBAEA2A1FE95500BD8278 /* Controllers */,
+				79AFBAE92A1FE94000BD8278 /* Resources */,
+				79AFBAEB2A1FE9A100BD8278 /* Helpers */,
 				79AFBADA2A1F744700BD8278 /* Info.plist */,
-				79AFBAE42A1FCD4700BD8278 /* ImageVC.swift */,
 			);
 			path = PageViewConrtroller;
+			sourceTree = "<group>";
+		};
+		79AFBAE82A1FE91900BD8278 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				79AFBACC2A1F744400BD8278 /* AppDelegate.swift */,
+				79AFBACE2A1F744400BD8278 /* SceneDelegate.swift */,
+				79AFBAD72A1F744700BD8278 /* LaunchScreen.storyboard */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		79AFBAE92A1FE94000BD8278 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				79AFBAD52A1F744700BD8278 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		79AFBAEA2A1FE95500BD8278 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				79AFBAD02A1F744400BD8278 /* MainViewController.swift */,
+				79AFBAE42A1FCD4700BD8278 /* ImageVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		79AFBAEB2A1FE9A100BD8278 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				79AFBAE22A1F856D00BD8278 /* ImageNames.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		79AFBAEC2A1FE9B400BD8278 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				79AFBAE62A1FE90700BD8278 /* MyButton.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,11 +183,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79AFBAD12A1F744400BD8278 /* ViewController.swift in Sources */,
+				79AFBAD12A1F744400BD8278 /* MainViewController.swift in Sources */,
 				79AFBACD2A1F744400BD8278 /* AppDelegate.swift in Sources */,
 				79AFBAE52A1FCD4700BD8278 /* ImageVC.swift in Sources */,
 				79AFBACF2A1F744400BD8278 /* SceneDelegate.swift in Sources */,
 				79AFBAE32A1F856D00BD8278 /* ImageNames.swift in Sources */,
+				79AFBAE72A1FE90700BD8278 /* MyButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

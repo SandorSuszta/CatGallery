@@ -73,10 +73,24 @@ final class MainViewController: UIViewController {
     
     @objc private func previousButtonTapped() {
         
+        if let currentVC = pageController.viewControllers?.first,
+           let currentIndex = pages.firstIndex(of: currentVC),
+           currentIndex > 0 {
+            let previousIndex = currentIndex - 1
+            pageController.setViewControllers([pages[previousIndex]], direction: .reverse, animated: true)
+            pageControl.currentPage = previousIndex
+        }
     }
     
     @objc private func nextButtonTapped() {
         
+        if let currentVC = pageController.viewControllers?.first,
+           let currentIndex = pages.firstIndex(of: currentVC),
+           currentIndex < pages.count - 1 {
+            let nextIndex = currentIndex + 1
+            pageController.setViewControllers([pages[nextIndex]], direction: .forward, animated: true)
+            pageControl.currentPage = nextIndex
+        }
     }
     
     //MARK: - Private  methods

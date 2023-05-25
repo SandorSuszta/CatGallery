@@ -15,7 +15,7 @@ final class MyButton: UIButton {
         backgroundColor = .black
         setTitleColor(.white, for: .normal)
         setTitle(title, for: .normal)
-        titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        titleLabel?.font = UIFont(name: "Roboto-Bold", size: 13)
         layer.cornerRadius = 6
     }
 }

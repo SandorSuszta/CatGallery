@@ -69,11 +69,7 @@ final class MainViewController: UIViewController {
     }
     
     //MARK: - Button event handlers
-    
-    @objc private func blackAndWhiteButtonTapped() {
-        
-    }
-    
+
     @objc private func previousButtonTapped() {
         
         if let currentVC = pageController.viewControllers?.first,
@@ -94,6 +90,12 @@ final class MainViewController: UIViewController {
             pageController.setViewControllers([pages[nextIndex]], direction: .forward, animated: true)
             pageControl.currentPage = nextIndex
         }
+    }
+    
+    @objc private func blackAndWhiteButtonTapped() {
+        if let currentVC = pageController.viewControllers?.first as? ImageVC {
+                currentVC.toggleBlackAndWhite()
+            }
     }
     
     //MARK: - Private  methods

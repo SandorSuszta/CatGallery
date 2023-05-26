@@ -7,11 +7,17 @@ final class ImageVC: UIViewController {
         return image
     }()
     
+    private let originalImage: UIImage?
+    
+    private var isBlackAndWhite: Bool = false
+    
+    private let context = CIContext()
+    
     //MARK: - Init
     
     init(imageName: String ) {
+        self.originalImage = UIImage(named: imageName)
         super.init(nibName: nil, bundle: nil)
-        self.imageView.image = UIImage(named: imageName)
     }
     
     required init?(coder: NSCoder) {
@@ -22,10 +28,31 @@ final class ImageVC: UIViewController {
     
     override func viewDidLoad() {
         view.addSubview(imageView)
+        view.backgroundColor = .systemBackground
+        imageView.image = originalImage
         configureLayout()
         applyShadow()
-        view.backgroundColor = .systemBackground
+        
     }
+    
+    //MARK: - API
+    
+    func toggleBlackAndWhite() {
+        
+        if isBlackAndWhite {
+            imageView.image = originalImage
+            isBlackAndWhite = false
+        } else {
+            let ciImage = CIImage(image: imageView.image!)
+            
+            if let blackAndWhiteImage = applyBlackAndWhiteFilter(to: ciImage!) {
+                imageView.image = UIImage(cgImage: blackAndWhiteImage)
+                isBlackAndWhite = true
+            }
+        }
+    }
+    
+    //MARK: - Private methods
     
     private func configureLayout() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -43,5 +70,28 @@ final class ImageVC: UIViewController {
         imageView.layer.shadowOpacity = 0.5
         imageView.layer.shadowOffset = CGSize(width: 0, height: 5)
         imageView.layer.shadowRadius = 5
+    }
+    
+    private func applyBlackAndWhiteFilter(to image: CIImage) -> CGImage? {
+        
+        let filter = CIFilter(name: "CIPhotoEffectMono")
+        filter?.setValue(image, forKey: kCIInputImageKey)
+        
+        let outputImage = filter?.outputImage
+        
+        let cgImage = context.createCGImage(outputImage!, from: outputImage!.extent)
+        
+        return cgImage
+    }
+    
+    private func applyColorFilter(to image: CIImage) -> CGImage? {
+        let filter = CIFilter(name: "CIColorControls")
+        filter?.setValue(image, forKey: kCIInputImageKey)
+        filter?.setValue(1.0, forKey: kCIInputSaturationKey)
+        
+        let outputImage = filter?.outputImage
+        let cgImage = context.createCGImage(outputImage!, from: outputImage!.extent)
+        
+        return cgImage
     }
 }

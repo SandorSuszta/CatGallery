@@ -1,6 +1,6 @@
 import UIKit
 
-final class ImageVC: UIViewController {
+final class ImageViewController: UIViewController {
     
     private let imageView: UIImageView = {
         let image = UIImageView()

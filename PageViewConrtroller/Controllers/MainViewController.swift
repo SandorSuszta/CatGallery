@@ -93,7 +93,7 @@ final class MainViewController: UIViewController {
     }
     
     @objc private func blackAndWhiteButtonTapped() {
-        if let currentVC = pageController.viewControllers?.first as? ImageVC {
+        if let currentVC = pageController.viewControllers?.first as? ImageViewController {
                 currentVC.toggleBlackAndWhite()
             }
     }
@@ -103,10 +103,10 @@ final class MainViewController: UIViewController {
     private func makePages() -> [UIViewController] {
         
         var pages: [UIViewController] = []
-        let imageNames = [ImageNames.cat, ImageNames.dog, ImageNames.hamster]
+        let imageNames = [ImageNames.cat, ImageNames.catTwo, ImageNames.catThree]
         
         imageNames.forEach {
-            let vc = ImageVC(imageName: $0)
+            let vc = ImageViewController(imageName: $0)
             pages.append(vc)
         }
         

@@ -13,7 +13,7 @@
 		79AFBAD62A1F744700BD8278 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79AFBAD52A1F744700BD8278 /* Assets.xcassets */; };
 		79AFBAD92A1F744700BD8278 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79AFBAD72A1F744700BD8278 /* LaunchScreen.storyboard */; };
 		79AFBAE32A1F856D00BD8278 /* ImageNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFBAE22A1F856D00BD8278 /* ImageNames.swift */; };
-		79AFBAE52A1FCD4700BD8278 /* ImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFBAE42A1FCD4700BD8278 /* ImageVC.swift */; };
+		79AFBAE52A1FCD4700BD8278 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFBAE42A1FCD4700BD8278 /* ImageViewController.swift */; };
 		79AFBAE72A1FE90700BD8278 /* MyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AFBAE62A1FE90700BD8278 /* MyButton.swift */; };
 		79AFBAEE2A20141100BD8278 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79AFBAED2A20141100BD8278 /* Roboto-Bold.ttf */; };
 /* End PBXBuildFile section */
@@ -27,7 +27,7 @@
 		79AFBAD82A1F744700BD8278 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79AFBADA2A1F744700BD8278 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79AFBAE22A1F856D00BD8278 /* ImageNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageNames.swift; sourceTree = "<group>"; };
-		79AFBAE42A1FCD4700BD8278 /* ImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageVC.swift; sourceTree = "<group>"; };
+		79AFBAE42A1FCD4700BD8278 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		79AFBAE62A1FE90700BD8278 /* MyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButton.swift; sourceTree = "<group>"; };
 		79AFBAED2A20141100BD8278 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,7 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				79AFBAD02A1F744400BD8278 /* MainViewController.swift */,
-				79AFBAE42A1FCD4700BD8278 /* ImageVC.swift */,
+				79AFBAE42A1FCD4700BD8278 /* ImageViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -189,7 +189,7 @@
 			files = (
 				79AFBAD12A1F744400BD8278 /* MainViewController.swift in Sources */,
 				79AFBACD2A1F744400BD8278 /* AppDelegate.swift in Sources */,
-				79AFBAE52A1FCD4700BD8278 /* ImageVC.swift in Sources */,
+				79AFBAE52A1FCD4700BD8278 /* ImageViewController.swift in Sources */,
 				79AFBACF2A1F744400BD8278 /* SceneDelegate.swift in Sources */,
 				79AFBAE32A1F856D00BD8278 /* ImageNames.swift in Sources */,
 				79AFBAE72A1FE90700BD8278 /* MyButton.swift in Sources */,

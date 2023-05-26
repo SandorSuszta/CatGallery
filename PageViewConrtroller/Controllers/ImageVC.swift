@@ -39,17 +39,11 @@ final class ImageVC: UIViewController {
     
     func toggleBlackAndWhite() {
         
-        if isBlackAndWhite {
-            imageView.image = originalImage
-            isBlackAndWhite = false
-        } else {
-            let ciImage = CIImage(image: imageView.image!)
-            
-            if let blackAndWhiteImage = applyBlackAndWhiteFilter(to: ciImage!) {
-                imageView.image = UIImage(cgImage: blackAndWhiteImage)
-                isBlackAndWhite = true
-            }
-        }
+        imageView.image = isBlackAndWhite
+            ? originalImage
+            : applyBlackAndWhiteFilter(to: imageView.image!)
+        
+        isBlackAndWhite.toggle()
     }
     
     //MARK: - Private methods
@@ -72,26 +66,16 @@ final class ImageVC: UIViewController {
         imageView.layer.shadowRadius = 5
     }
     
-    private func applyBlackAndWhiteFilter(to image: CIImage) -> CGImage? {
+    private func applyBlackAndWhiteFilter(to image: UIImage) -> UIImage {
+        let ciImage = CIImage(image: image)
         
         let filter = CIFilter(name: "CIPhotoEffectMono")
-        filter?.setValue(image, forKey: kCIInputImageKey)
+        filter?.setValue(ciImage, forKey: kCIInputImageKey)
         
         let outputImage = filter?.outputImage
         
         let cgImage = context.createCGImage(outputImage!, from: outputImage!.extent)
         
-        return cgImage
-    }
-    
-    private func applyColorFilter(to image: CIImage) -> CGImage? {
-        let filter = CIFilter(name: "CIColorControls")
-        filter?.setValue(image, forKey: kCIInputImageKey)
-        filter?.setValue(1.0, forKey: kCIInputSaturationKey)
-        
-        let outputImage = filter?.outputImage
-        let cgImage = context.createCGImage(outputImage!, from: outputImage!.extent)
-        
-        return cgImage
+        return UIImage(cgImage: cgImage!)
     }
 }

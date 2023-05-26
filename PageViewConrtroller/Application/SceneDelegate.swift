@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  PageViewConrtroller
-//
-//  Created by Nataliia Shusta on 25/05/2023.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

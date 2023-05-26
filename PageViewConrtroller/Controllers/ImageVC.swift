@@ -7,15 +7,18 @@ final class ImageVC: UIViewController {
         return image
     }()
     
+    //MARK: - Init
+    
     init(imageName: String ) {
         super.init(nibName: nil, bundle: nil)
         self.imageView.image = UIImage(named: imageName)
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         view.addSubview(imageView)
@@ -38,7 +41,7 @@ final class ImageVC: UIViewController {
     private func applyShadow() {
         imageView.layer.shadowColor = UIColor.black.cgColor
         imageView.layer.shadowOpacity = 0.5
-        imageView.layer.shadowOffset = CGSize(width: 0, height: 10)
+        imageView.layer.shadowOffset = CGSize(width: 0, height: 5)
         imageView.layer.shadowRadius = 5
     }
 }

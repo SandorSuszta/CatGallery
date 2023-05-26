@@ -1,17 +1,19 @@
-//
-//  ViewController.swift
-//  PageViewConrtroller
-//
-//  Created by Nataliia Shusta on 25/05/2023.
-//
-
 import UIKit
 
 final class MainViewController: UIViewController {
     
-    private var pages: [UIViewController] = []
+    private lazy var pages: [UIViewController] = makePages()
     
     //MARK: - UI Elements
+    
+    private var mainLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = .clear
+        label.textAlignment = .center
+        label.text = "CATS GALLERY"
+        label.font = UIFont(name: "Roboto-Bold", size: 32)
+        return label
+    }()
     
     private lazy var pageController: UIPageViewController = {
         let controller = UIPageViewController(
@@ -24,12 +26,13 @@ final class MainViewController: UIViewController {
         return controller
     }()
     
-    private var pageControl: UIPageControl = {
+    private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.numberOfPages = 3
+        pageControl.numberOfPages = pages.count
         pageControl.backgroundColor = .clear
         pageControl.currentPageIndicatorTintColor = .black
         pageControl.pageIndicatorTintColor = .lightGray
+        pageControl.isUserInteractionEnabled = false
         pageControl.currentPage = 0
         return pageControl
     }()
@@ -111,14 +114,16 @@ final class MainViewController: UIViewController {
     //MARK: - View Layout
     
     private func configureViewHierarchy() {
+        view.addSubview(mainLabel)
         view.addSubview(pageController.view)
         view.addSubview(pageControl)
-        view.addSubview(blackAndWhiteButton)
         view.addSubview(previousButton)
         view.addSubview(nextButton)
+        view.addSubview(blackAndWhiteButton)
     }
     
     private func configureViewLayout() {
+        mainLabel.translatesAutoresizingMaskIntoConstraints = false
         pageController.view.translatesAutoresizingMaskIntoConstraints = false
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         blackAndWhiteButton.translatesAutoresizingMaskIntoConstraints = false
@@ -126,21 +131,20 @@ final class MainViewController: UIViewController {
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            mainLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 110),
+            mainLabel.heightAnchor.constraint(equalToConstant: 35),
+            mainLabel.widthAnchor.constraint(equalToConstant: 238),
             
-            pageController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 170),
+            pageController.view.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 40),
             pageController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             pageController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            pageController.view.heightAnchor.constraint(equalToConstant: 400),
+            pageController.view.heightAnchor.constraint(equalToConstant: 380),
             
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             pageControl.topAnchor.constraint(equalTo: pageController.view.bottomAnchor),
             pageControl.heightAnchor.constraint(equalToConstant: 50),
             pageControl.widthAnchor.constraint(equalToConstant: 200),
-            
-            blackAndWhiteButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -75),
-            blackAndWhiteButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            blackAndWhiteButton.widthAnchor.constraint(equalToConstant: 270),
-            blackAndWhiteButton.heightAnchor.constraint(equalToConstant: 50),
             
             previousButton.bottomAnchor.constraint(equalTo: blackAndWhiteButton.topAnchor, constant: -36),
             previousButton.leadingAnchor.constraint(equalTo: blackAndWhiteButton.leadingAnchor),
@@ -150,7 +154,12 @@ final class MainViewController: UIViewController {
             nextButton.bottomAnchor.constraint(equalTo: blackAndWhiteButton.topAnchor, constant: -36),
             nextButton.trailingAnchor.constraint(equalTo: blackAndWhiteButton.trailingAnchor),
             nextButton.widthAnchor.constraint(equalToConstant: 120),
-            nextButton.heightAnchor.constraint(equalToConstant: 50)
+            nextButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            blackAndWhiteButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -75),
+            blackAndWhiteButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            blackAndWhiteButton.widthAnchor.constraint(equalToConstant: 270),
+            blackAndWhiteButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
 }
